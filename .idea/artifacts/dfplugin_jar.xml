@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="dfplugin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/dfplugin_jar</output-path>
+    <root id="archive" name="dfplugin.jar">
+      <element id="module-output" name="db_plugin" />
+    </root>
+  </artifact>
+</component>
