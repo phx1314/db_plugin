@@ -38,7 +38,7 @@ public class CreateFitXml {
             }
 
             if (this.Distinguish == 0.0F) {
-                this.Distinguish = 320.0F;
+                this.Distinguish = 375.0F;
             }
 
             this.mkFile(valuefile, (float)scr.width * 1.0F / this.Distinguish, "dp", dplist, true);

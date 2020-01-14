@@ -19,6 +19,8 @@ import org.jdom.output.XMLOutputter;
 import java.io.OutputStreamWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SearchXMLTextValues {
     private Element rootele;
@@ -52,8 +54,8 @@ public class SearchXMLTextValues {
                 String n;
                 float f;
                 if (atb.getName().equals("text") && !v.equals(AdressUtil.getPinyin(v))) {
-                    atb.setValue("@string/" + xmlFile.getName().substring(0,xmlFile.getName().length()-4) + "_" + AdressUtil.getPinyin(v));
-                    addString( xmlFile.getName().substring(0,xmlFile.getName().length()-4)  + "_" + AdressUtil.getPinyin(v), v);
+                    atb.setValue("@string/" + xmlFile.getName().substring(0, xmlFile.getName().length() - 4) + "_" + stringFilter(AdressUtil.getPinyin(v)));
+                    addString(xmlFile.getName().substring(0, xmlFile.getName().length() - 4) + "_" + stringFilter(AdressUtil.getPinyin(v)), v);
                 }
             }
         }
@@ -98,4 +100,16 @@ public class SearchXMLTextValues {
         fw.close();
     }
 
+    /**
+     * 过滤特殊字符
+     *
+     * @param str
+     * @return
+     */
+    public static String stringFilter(String str) {
+        String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("").trim();
+    }
 }
