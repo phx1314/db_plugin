@@ -86,7 +86,7 @@ public class FitScreenAW extends Simple {
             }
         }
 
-        new CreateFitXml(this.dplist, this.splist, this.resFile, 0.0F);
+        new CreateFitXml(this.dplist, this.splist, this.resFile, 0.0F, module );
     }
 
     public void checkXml(VirtualFile resFile, VirtualFile xmlFile) throws Exception {
