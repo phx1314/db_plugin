@@ -25,7 +25,12 @@ class {{classname}} (context: Context, list: List<String>) : MAdapter<String>(co
         if (convertView == null) {
             convertView = {{itemView}}(context)
         }
-        (convertView as {{itemView}}).set(item)
+        try {
+            (convertView as {{itemView}}).set(item)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         return convertView
     }
 }
