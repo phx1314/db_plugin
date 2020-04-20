@@ -53,7 +53,7 @@ public class SearchXMLTextValues {
                 v = atb.getValue();
                 String n;
                 float f;
-                if (atb.getName().equals("text") && !v.equals(AdressUtil.getPinyin(v))) {
+                if ((atb.getName().equals("text") || atb.getName().equals("hint")) && !v.equals(AdressUtil.getPinyin(v))) {
                     atb.setValue("@string/" + xmlFile.getName().substring(0, xmlFile.getName().length() - 4) + "_" + stringFilter(AdressUtil.getPinyin(v)));
                     addString(xmlFile.getName().substring(0, xmlFile.getName().length() - 4) + "_" + stringFilter(AdressUtil.getPinyin(v)), v);
                 }
