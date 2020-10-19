@@ -9,6 +9,7 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.vfs.VirtualFile;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,9 +28,9 @@ public class CreateFitXml {
     public CreateFitXml(List<CreateFitXml.Dimclass> dplist, List<CreateFitXml.Dimclass> splist, VirtualFile resFile, float Distinguish, Module module) throws Exception {
         this.Distinguish = Distinguish;
         this.module = module;
-        VirtualFile valuefile = resFile.findChild("values");
+        VirtualFile valuefile = resFile .findChild("values");
         if (valuefile == null || !valuefile.exists()) {
-            valuefile = resFile.createChildDirectory((Object) null, "values");
+            valuefile = resFile .createChildDirectory((Object) null, "values");
         }
 
         this.mkFile(valuefile, 1.0F, "dp", dplist, false);
@@ -39,9 +40,9 @@ public class CreateFitXml {
         for (int var8 = 0; var8 < var7; ++var8) {
             CreateFitXml.ScreenF scr = var6[var8];
             String pn = "values-sw" + scr.width + "dp";
-            valuefile = resFile.findChild(pn);
+            valuefile = resFile .findChild(pn);
             if (valuefile == null || !valuefile.exists()) {
-                valuefile = resFile.createChildDirectory((Object) null, pn);
+                valuefile = resFile .createChildDirectory((Object) null, pn);
             }
             VirtualFile stringFile = module.getModuleFile().getParent().findChild("screenMatch.properties");
 
@@ -117,7 +118,7 @@ public class CreateFitXml {
         VirtualFile xml = path.findOrCreateChildData((Object) null, dw + "dim.xml");
         Element root = new Element("resources");
         Iterator var8 = list.iterator();
-
+        List<String> names = new ArrayList<>();
         while (true) {
             while (var8.hasNext()) {
                 CreateFitXml.Dimclass flo = (CreateFitXml.Dimclass) var8.next();
@@ -127,16 +128,21 @@ public class CreateFitXml {
                     if (flo.name == null || flo.name.length() == 0) {
                         flo.name = getDimName(flo.value, dw);
                     }
-
-                    ele.setAttribute("name", flo.name);
-                    ele.setText(flo.value * js + dw);
-                    root.addContent(ele);
+                    if (!names.contains(flo.name)) {
+                        names.add(flo.name);
+                        ele.setAttribute("name", flo.name);
+                        ele.setText(flo.value * js + dw);
+                        root.addContent(ele);
+                    }
                 } else if (flo.name == null || flo.name.length() == 0) {
                     flo.name = getDimName(flo.value, dw);
-                    ele = new Element("dimen");
-                    ele.setAttribute("name", flo.name);
-                    ele.setText(flo.value * js + dw);
-                    root.addContent(ele);
+                    if (!names.contains(flo.name)) {
+                        names.add(flo.name);
+                        ele = new Element("dimen");
+                        ele.setAttribute("name", flo.name);
+                        ele.setText(flo.value * js + dw);
+                        root.addContent(ele);
+                    }
                 }
             }
 

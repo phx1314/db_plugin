@@ -27,7 +27,8 @@ class  {{classname}}(context: Context?) : BaseItem(context) {
     }
 
     fun set(item: Any?) {
-
+        item?.run{
+        }
     }
 
 }

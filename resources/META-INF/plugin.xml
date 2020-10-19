@@ -19,9 +19,9 @@
     </extensions>
 
     <actions>
-        <!--        <action id="Andplus_findvaction" class="com.mdx.andplus.Action.FindVAction" text="FindView">-->
-        <!--            <add-to-group group-id="GenerateGroup" anchor="first"/>-->
-        <!--        </action>-->
+                <action id="Andplus_findvaction" class="com.mdx.andplus.Action.FindVAction" text="FindView">
+                    <add-to-group group-id="GenerateGroup" anchor="first"/>
+                </action>
 
 
         <action id="Andplus_createClass" class="com.mdx.andplus.Action.CreateClass" text="CreateClass"

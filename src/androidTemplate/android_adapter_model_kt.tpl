@@ -16,7 +16,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 {{imports}}
 
-class {{classname}} (context: Context, list: List<String>) : MAdapter<String>(context, list) {
+class {{classname}} (context: Context?, list: List<String>?) : MAdapter<String>(context, list) {
 
 
     override fun getview(position: Int, convertView: View?, parent: ViewGroup): View? {
